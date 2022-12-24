@@ -9,6 +9,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.viewbinding.library.fragment.viewBinding
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -27,10 +28,9 @@ import com.lelestacia.lelenimexml.feature.anime.ui.adapter.FooterLoadStateAdapte
 import com.lelestacia.lelenimexml.feature.anime.ui.adapter.ListAnimePagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 @AndroidEntryPoint
-class AnimeFragment : Fragment(R.layout.fragment_anime), MenuProvider {
+class AnimeFragment : Fragment(R.layout.fragment_anime), MenuProvider, View.OnClickListener {
 
     private val binding: FragmentAnimeBinding by viewBinding()
     private val viewModel by viewModels<AnimeViewModel>()
@@ -96,11 +96,13 @@ class AnimeFragment : Fragment(R.layout.fragment_anime), MenuProvider {
                                 Snackbar.LENGTH_SHORT
                             ).show()
                         }
+
                         is LoadState.NotLoading -> {
                             binding.showLoading(isLoading = false)
                             if (seasonAnimeAdapter.itemCount == 0)
                                 binding.showNotFound(isNotFound = true)
                         }
+
                         is LoadState.Error -> {
                             binding.showLoading(isLoading = false)
                             binding.showError(
@@ -123,6 +125,8 @@ class AnimeFragment : Fragment(R.layout.fragment_anime), MenuProvider {
             .setOnClickListener {
                 seasonAnimeAdapter.refresh()
             }
+
+        tvInformation.setOnClickListener(this@AnimeFragment)
     }
 
     private fun FragmentAnimeBinding.showLoading(isLoading: Boolean) {
@@ -152,7 +156,15 @@ class AnimeFragment : Fragment(R.layout.fragment_anime), MenuProvider {
                     .hideSoftInputFromWindow(view?.windowToken, 0)
 
                 viewModel.insertNewSearchQuery(query)
-                Timber.d("New Search Query : $query")
+                binding.apply {
+                    tvInformation.text = getString(R.string.searching_for, query)
+                    tvInformation.setCompoundDrawables(
+                        null,
+                        null,
+                        ResourcesCompat.getDrawable(resources, R.drawable.ic_clear, null),
+                        null
+                    )
+                }
 
                 return true
             }
@@ -169,11 +181,24 @@ class AnimeFragment : Fragment(R.layout.fragment_anime), MenuProvider {
                     .show()
                 true
             }
+
             R.id.btn_history_menu -> {
                 findNavController().navigate(AnimeFragmentDirections.animeToHistory())
                 true
             }
+
             else -> false
+        }
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            binding.tvInformation.id -> {
+                if (binding.tvInformation.text != getString(R.string.currently_airing)) {
+                    viewModel.insertNewSearchQuery("")
+                    binding.tvInformation.setCompoundDrawables(null, null, null, null)
+                }
+            }
         }
     }
 }
