@@ -63,25 +63,23 @@ class DetailAnimeFragment : Fragment(R.layout.fragment_detail_anime), View.OnCli
                 /*End of Header Section*/
 
                 /*Body Section*/
-                tvTypeValue.text = getString(R.string.information_value, anime.type)
-                tvRatingValue.text =
-                    if (anime.rating.isEmpty()) UNKNOWN
-                    else getString(R.string.information_value, anime.rating)
+                tvTypeValue.text = getTextWithTemplate(anime.type)
+                tvRatingValue.text = getTextWithTemplate(anime.rating)
 
                 tvEpisodeValue.text =
-                    if (anime.episodes != null)
-                        getString(R.string.information_value, anime.episodes.toString())
-                    else getString(R.string.information_value, UNKNOWN)
+                    if (anime.episodes != null) getTextWithTemplate(anime.episodes.toString())
+                    else getTextWithTemplate(null)
 
-                tvGenreValue.text =
-                    if (anime.genres.isEmpty()) UNKNOWN
-                    else getString(R.string.information_value, ListToString().invoke(anime.genres))
+                tvGenreValue.text = getTextWithTemplate(ListToString().invoke(anime.genres))
 
-                tvStatusValue.text = getString(R.string.information_value, anime.status)
+                tvStatusValue.text = getTextWithTemplate(anime.status)
                 tvAiredValue.text =
-                    if (anime.season.isNullOrEmpty()) UNKNOWN
+                    if (anime.season.isNullOrEmpty()) getString(
+                        R.string.information_value_detail,
+                        UNKNOWN
+                    )
                     else getString(
-                        R.string.information_value,
+                        R.string.information_value_detail,
                         "${anime.season.replaceFirstChar { it.uppercase() }} ${anime.year}"
                     )
 
@@ -132,6 +130,14 @@ class DetailAnimeFragment : Fragment(R.layout.fragment_detail_anime), View.OnCli
                     characterAdapter.submitList(characters)
                 }
         }
+    }
+
+    private fun getTextWithTemplate(input: String?): String {
+        if (input.isNullOrEmpty()) {
+            return getString(R.string.information_value_detail, UNKNOWN)
+        }
+
+        return getString(R.string.information_value_detail, input)
     }
 
     override fun onClick(v: View?) {

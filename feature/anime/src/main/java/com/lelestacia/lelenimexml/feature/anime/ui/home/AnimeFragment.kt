@@ -44,6 +44,30 @@ class AnimeFragment : Fragment(R.layout.fragment_anime), MenuProvider, View.OnCl
             Lifecycle.State.RESUMED
         )
         binding.setData()
+        binding.setHeader()
+    }
+
+    private fun FragmentAnimeBinding.setHeader() {
+        viewModel.searchQuery.observe(viewLifecycleOwner) { searchQuery ->
+            if (searchQuery.isEmpty()) {
+                tvInformation.text = getString(R.string.currently_airing)
+                tvInformation.setCompoundDrawablesWithIntrinsicBounds(
+                    null,
+                    null,
+                    null,
+                    null
+                )
+                return@observe
+            }
+
+            tvInformation.text = getString(R.string.searching_for, searchQuery)
+            tvInformation.setCompoundDrawablesWithIntrinsicBounds(
+                null,
+                null,
+                ResourcesCompat.getDrawable(resources, R.drawable.ic_clear, null),
+                null
+            )
+        }
     }
 
     private fun FragmentAnimeBinding.setData() {
@@ -156,16 +180,6 @@ class AnimeFragment : Fragment(R.layout.fragment_anime), MenuProvider, View.OnCl
                     .hideSoftInputFromWindow(view?.windowToken, 0)
 
                 viewModel.insertNewSearchQuery(query)
-                binding.apply {
-                    tvInformation.text = getString(R.string.searching_for, query)
-                    tvInformation.setCompoundDrawables(
-                        null,
-                        null,
-                        ResourcesCompat.getDrawable(resources, R.drawable.ic_clear, null),
-                        null
-                    )
-                }
-
                 return true
             }
 
@@ -196,7 +210,6 @@ class AnimeFragment : Fragment(R.layout.fragment_anime), MenuProvider, View.OnCl
             binding.tvInformation.id -> {
                 if (binding.tvInformation.text != getString(R.string.currently_airing)) {
                     viewModel.insertNewSearchQuery("")
-                    binding.tvInformation.setCompoundDrawables(null, null, null, null)
                 }
             }
         }
