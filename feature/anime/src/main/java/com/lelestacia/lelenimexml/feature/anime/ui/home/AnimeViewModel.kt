@@ -3,9 +3,12 @@ package com.lelestacia.lelenimexml.feature.anime.ui.home
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.lelestacia.lelenimexml.core.model.local.AnimeEntity
 import com.lelestacia.lelenimexml.feature.anime.domain.model.Anime
 import com.lelestacia.lelenimexml.feature.anime.domain.usecase.AnimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -39,5 +42,11 @@ class AnimeViewModel @Inject constructor(
 
     suspend fun insertOrUpdateAnimeToHistory(anime: Anime) {
         animeUseCase.insertOrUpdateNewAnimeToHistory(anime)
+    }
+
+    suspend fun getFavoriteAnime(): List<AnimeEntity> {
+        return withContext(Dispatchers.IO) {
+            animeUseCase.getAllFavoriteAnime()
+        }
     }
 }

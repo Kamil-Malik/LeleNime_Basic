@@ -36,6 +36,10 @@ class AnimeInteractor @Inject constructor(
             .getNewestAnimeDataByAnimeId(animeId)
             .map(::animeEntityToAnime)
 
+    override fun getAllFavoriteAnime(): List<AnimeEntity> {
+        return animeRepository.getFavoriteAnime()
+    }
+
     override suspend fun getAnimeByAnimeId(animeId: Int): AnimeEntity? =
         animeRepository.getAnimeByAnimeId(animeId)
 

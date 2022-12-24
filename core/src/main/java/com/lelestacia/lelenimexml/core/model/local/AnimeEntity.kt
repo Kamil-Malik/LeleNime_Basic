@@ -1,11 +1,14 @@
 package com.lelestacia.lelenimexml.core.model.local
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 import java.util.Date
 
+@Parcelize
 @Entity(tableName = "anime_table")
 data class AnimeEntity(
     @PrimaryKey(autoGenerate = false)
@@ -30,11 +33,12 @@ data class AnimeEntity(
     val lastViewed: Date,
     @ColumnInfo(defaultValue = "false")
     var isFavorite: Boolean
-) {
+) : Parcelable {
 
+    @Parcelize
     data class Trailer(
         val youtubeId: String?,
         val url: String?,
         val images: String?
-    )
+    ) : Parcelable
 }

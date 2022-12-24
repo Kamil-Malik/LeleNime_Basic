@@ -26,7 +26,6 @@ class AnimeRepositoryImpl @Inject constructor(
 ) : AnimeRepository {
 
     private val animeDao = animeDatabase.animeDao()
-
     override fun seasonAnimePagingData(): Flow<PagingData<AnimeResponse>> {
         return Pager(
             config = PagingConfig(
@@ -40,7 +39,6 @@ class AnimeRepositoryImpl @Inject constructor(
             }
         ).flow
     }
-
     override fun searchAnimeByTitle(query: String): Flow<PagingData<AnimeResponse>> {
         val isSafeMode = mContext.getSharedPreferences(USER_PREF, Context.MODE_PRIVATE)
             .getBoolean(IS_SFW, true)
@@ -56,18 +54,17 @@ class AnimeRepositoryImpl @Inject constructor(
             }
         ).flow
     }
-
     override suspend fun getNewestAnimeDataByAnimeId(animeId: Int): Flow<AnimeEntity> {
         return animeDao.getNewestAnimeDataByAnimeId(animeId)
     }
-
     override suspend fun getAnimeByAnimeId(animeId: Int): AnimeEntity? {
         return withContext(ioDispatcher) {
             animeDao.getAnimeByAnimeId(animeId)
         }
     }
-
-
+    override fun getFavoriteAnime(): List<AnimeEntity> {
+        return animeDao.getAllFavoriteAnime()
+    }
     override fun getAnimeHistory(): Flow<PagingData<AnimeEntity>> =
         Pager(
             config = PagingConfig(
@@ -79,13 +76,11 @@ class AnimeRepositoryImpl @Inject constructor(
                 animeDao.getAllAnime()
             }
         ).flow
-
     override suspend fun insertAnimeToHistory(animeEntity: AnimeEntity) {
         withContext(ioDispatcher) {
             animeDao.insertOrUpdateAnime(animeEntity)
         }
     }
-
     override suspend fun updateAnimeFavorite(malID: Int) {
         withContext(ioDispatcher) {
             val anime = animeDao.getAnimeByAnimeId(malID)

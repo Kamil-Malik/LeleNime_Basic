@@ -1,6 +1,7 @@
 package com.lelestacia.lelenimexml.feature.anime.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -191,9 +192,25 @@ class AnimeFragment : Fragment(R.layout.fragment_anime), MenuProvider, View.OnCl
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
             R.id.btn_favorite_menu -> {
-                Snackbar
-                    .make(binding.root, "Favorite Coming Soon", Snackbar.LENGTH_SHORT)
-                    .show()
+                lifecycleScope.launch {
+                    val data = viewModel.getFavoriteAnime().toTypedArray()
+                    val bundle = Bundle()
+                    bundle.putParcelableArray("DATA", data)
+                    try {
+                        startActivity(
+                            Intent(
+                                requireActivity(),
+                                Class.forName("com.lelestacia.lelenimexml.feature.favorite.FavoriteActivity")
+                            ).putExtra("DATA", bundle)
+                        )
+                    } catch (e: Exception) {
+                        Snackbar.make(
+                            binding.root,
+                            "Module Not Found",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+                }
                 true
             }
 

@@ -14,6 +14,9 @@ interface AnimeDao {
     @Query("SELECT * FROM anime_table ORDER BY lastViewed DESC")
     fun getAllAnime(): PagingSource<Int, AnimeEntity>
 
+    @Query("SELECT * FROM anime_table WHERE isFavorite = 1")
+    fun getAllFavoriteAnime(): List<AnimeEntity>
+
     @Query("SELECT * FROM anime_table WHERE malId = :animeId")
     fun getNewestAnimeDataByAnimeId(animeId: Int): Flow<AnimeEntity>
 
