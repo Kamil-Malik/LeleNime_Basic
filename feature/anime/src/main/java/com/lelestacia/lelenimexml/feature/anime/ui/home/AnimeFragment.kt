@@ -174,6 +174,7 @@ class AnimeFragment : Fragment(R.layout.fragment_anime), MenuProvider, View.OnCl
         menuInflater.inflate(R.menu.main_menu, menu)
         val myActionMenuItem = menu.findItem(R.id.btn_search_menu)
         val searchView = myActionMenuItem.actionView as SearchView
+        searchView.queryHint = getString(R.string.insert_anime_title)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)

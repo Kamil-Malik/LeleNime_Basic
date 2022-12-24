@@ -16,17 +16,21 @@ class AnimeViewModel @Inject constructor(
     private val _searchQuery = MutableLiveData("")
     val searchQuery: LiveData<String> get() = _searchQuery
 
+    private val airingAnime = animeUseCase
+        .getAiringAnime()
+        .cachedIn(viewModelScope)
+        .asLiveData()
+
     val getAnimeData: LiveData<PagingData<Anime>> = _searchQuery
-        .distinctUntilChanged()
         .switchMap { query ->
-            if (query.isEmpty()) animeUseCase
-                .getAiringAnime()
-                .cachedIn(viewModelScope)
-                .asLiveData()
-            else animeUseCase
-                .getAnimeByTitle(query)
-                .cachedIn(viewModelScope)
-                .asLiveData()
+            if (query.isEmpty())
+                airingAnime
+            else {
+                animeUseCase
+                    .getAnimeByTitle(_searchQuery.value as String)
+                    .cachedIn(viewModelScope)
+                    .asLiveData()
+            }
         }
 
     fun insertNewSearchQuery(newSearchQuery: String) {

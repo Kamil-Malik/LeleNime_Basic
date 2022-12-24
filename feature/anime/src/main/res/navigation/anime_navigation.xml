@@ -40,7 +40,7 @@
     </fragment>
     <dialog
         android:id="@+id/fragmentCharacterBottomSheet"
-        android:name="com.lelestacia.lelenimexml.feature.anime.ui.character_bottom_sheet.FragmentCharacterBottomSheet"
+        android:name="com.lelestacia.lelenimexml.feature.anime.ui.character.FragmentCharacterBottomSheet"
         android:label="FragmentCharacterBottomSheet"
         tools:layout="@layout/fragment_character_bottom_sheet" >
         <argument

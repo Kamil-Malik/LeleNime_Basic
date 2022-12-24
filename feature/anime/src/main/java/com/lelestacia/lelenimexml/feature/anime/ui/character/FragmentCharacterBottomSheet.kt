@@ -1,4 +1,4 @@
-package com.lelestacia.lelenimexml.feature.anime.ui.character_bottom_sheet
+package com.lelestacia.lelenimexml.feature.anime.ui.character
 
 import android.os.Bundle
 import android.view.View

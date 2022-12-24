@@ -1,20 +1,23 @@
 <resources>
+    <!--Utility-->
+    <string name="search">Search</string>
+    <string name="loading">Loading</string>
+    <string name="retry">Retry</string>
+    <string name="not_found">No Result Found</string>
+    <string name="insert_anime_title">Insert Anime Title Here…</string>
+    <string name="sample_lorem">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</string>
+    <string name="cover_image">Cover Image</string>
+
+    <!--Item List Anime-->
     <string name="rating_item_anime">Rating\t\t\t\t\t:\t%s</string>
     <string name="episode_item_anime">Episodes\t\t\t:\t%s</string>
     <string name="status_item_anime">Status\t\t\t\t\t:\t%s</string>
-    <string name="loading">Loading</string>
-    <string name="retry">Retry</string>
-    <string name="insert_anime_title">Insert Anime Title Here…</string>
-    <string name="search">Search</string>
-    <string name="placeholder_title">%s\t:</string>
-    <string name="cover_image">Cover Image</string>
-    <string name="rank_and_score">#%s - %s</string>
-    <string name="not_found">No Result Found</string>
-    <string name="no_nickname">This character has no nicknames</string>
-    <string name="sample_lorem">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</string>
+
+    <!--Character Screen-->
     <string name="no_information_by_mal">No information provided by the MAL Website</string>
 
     <!--TextView Detail Screen-->
+    <string name="rank_and_score">#%s - %s</string>
     <string name="type_detail">Type</string>
     <string name="rating_detail">Rating</string>
     <string name="episode_detail">Episode</string>
@@ -23,9 +26,9 @@
     <string name="aired_detail">Aired</string>
     <string name="information_value_detail">:\t%s</string>
     <string name="character_header_detail">Characters\t:</string>
+    <string name="btn_favorite">Button Favorite</string>
 
     <!--Textview Main Screen-->
     <string name="currently_airing">Currently Airing</string>
-    <string name="searching_for">Searching For %s</string>
-    <string name="btn_favorite">Button Favorite</string>
+    <string name="searching_for">Searching for %s</string>
 </resources>

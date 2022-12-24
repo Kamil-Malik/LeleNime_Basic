@@ -1,4 +1,4 @@
-package com.lelestacia.lelenimexml.feature.anime.ui.character_bottom_sheet
+package com.lelestacia.lelenimexml.feature.anime.ui.character
 
 import androidx.lifecycle.ViewModel
 import com.lelestacia.lelenimexml.feature.anime.domain.usecase.CharacterUseCase
