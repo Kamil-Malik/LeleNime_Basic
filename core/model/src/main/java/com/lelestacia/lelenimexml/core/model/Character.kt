@@ -1,4 +1,4 @@
-package com.lelestacia.lelenimexml.feature.anime.domain.model
+package com.lelestacia.lelenimexml.core.model
 
 data class Character(
     val characterMalId: Int,

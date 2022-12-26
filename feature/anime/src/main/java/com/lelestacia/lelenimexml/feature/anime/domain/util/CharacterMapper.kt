@@ -1,9 +1,9 @@
 package com.lelestacia.lelenimexml.feature.anime.domain.util
 
+import com.lelestacia.lelenimexml.core.model.CharacterDetail
+import com.lelestacia.lelenimexml.core.model.Character
 import com.lelestacia.lelenimexml.core.model.local.character.CharacterDetailEntity
 import com.lelestacia.lelenimexml.core.model.local.character.CharacterEntity
-import com.lelestacia.lelenimexml.feature.anime.domain.model.CharacterDetail
-import com.lelestacia.lelenimexml.feature.anime.domain.model.Character
 
 object CharacterMapper {
 

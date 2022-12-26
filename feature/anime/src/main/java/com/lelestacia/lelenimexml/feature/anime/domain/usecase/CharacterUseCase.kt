@@ -1,7 +1,7 @@
 package com.lelestacia.lelenimexml.feature.anime.domain.usecase
 
-import com.lelestacia.lelenimexml.feature.anime.domain.model.CharacterDetail
-import com.lelestacia.lelenimexml.feature.anime.domain.model.Character
+import com.lelestacia.lelenimexml.core.model.CharacterDetail
+import com.lelestacia.lelenimexml.core.model.Character
 import kotlinx.coroutines.flow.Flow
 
 interface CharacterUseCase {

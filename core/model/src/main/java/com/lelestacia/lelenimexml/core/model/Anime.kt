@@ -1,4 +1,4 @@
-package com.lelestacia.lelenimexml.feature.anime.domain.model
+package com.lelestacia.lelenimexml.core.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

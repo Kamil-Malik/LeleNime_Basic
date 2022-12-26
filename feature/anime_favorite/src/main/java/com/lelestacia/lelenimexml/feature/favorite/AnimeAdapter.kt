@@ -7,17 +7,17 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.lelestacia.lelenimexml.core.model.local.AnimeEntity
+import com.lelestacia.lelenimexml.core.model.Anime
 import com.lelestacia.lelenimexml.feature.anime.R
 import com.lelestacia.lelenimexml.feature.favorite.databinding.ItemListAnimeBinding
 
 class AnimeAdapter() :
-    ListAdapter<AnimeEntity, AnimeAdapter.ViewHolder>(DIFF_CALLBACK) {
+    ListAdapter<Anime, AnimeAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     inner class ViewHolder(private val binding: ItemListAnimeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: AnimeEntity) {
+        fun bind(item: Anime) {
             binding.apply {
                 val context = root.context
                 ivCoverAnime.load(item.coverImages) {
@@ -53,11 +53,11 @@ class AnimeAdapter() :
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<AnimeEntity>() {
-            override fun areItemsTheSame(oldItem: AnimeEntity, newItem: AnimeEntity): Boolean =
-                oldItem.malId == newItem.malId
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Anime>() {
+            override fun areItemsTheSame(oldItem: Anime, newItem: Anime): Boolean =
+                oldItem.malID == newItem.malID
 
-            override fun areContentsTheSame(oldItem: AnimeEntity, newItem: AnimeEntity): Boolean =
+            override fun areContentsTheSame(oldItem: Anime, newItem: Anime): Boolean =
                 oldItem == newItem
         }
     }

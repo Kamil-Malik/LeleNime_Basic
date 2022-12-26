@@ -5,7 +5,7 @@ import android.viewbinding.library.activity.viewBinding
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.lelestacia.lelenimexml.core.model.local.AnimeEntity
+import com.lelestacia.lelenimexml.core.model.Anime
 import com.lelestacia.lelenimexml.feature.favorite.databinding.ActivityFavoriteBinding
 
 class FavoriteActivity : AppCompatActivity() {
@@ -30,6 +30,6 @@ class FavoriteActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
 
-        favoriteAdapter.submitList(arr.toList() as List<AnimeEntity>)
+        favoriteAdapter.submitList(arr.toList() as List<Anime>)
     }
 }

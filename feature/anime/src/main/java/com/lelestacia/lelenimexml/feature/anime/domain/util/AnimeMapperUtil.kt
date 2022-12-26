@@ -1,9 +1,9 @@
 package com.lelestacia.lelenimexml.feature.anime.domain.util
 
+import com.lelestacia.lelenimexml.core.model.Anime
 import com.lelestacia.lelenimexml.core.model.local.AnimeEntity
 import com.lelestacia.lelenimexml.core.model.remote.anime.AnimeResponse
 import com.lelestacia.lelenimexml.core.utility.Constant.UNKNOWN
-import com.lelestacia.lelenimexml.feature.anime.domain.model.Anime
 import java.util.*
 
 object AnimeMapperUtil {

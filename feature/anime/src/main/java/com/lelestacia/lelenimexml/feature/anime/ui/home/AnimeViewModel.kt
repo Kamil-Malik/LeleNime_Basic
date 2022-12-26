@@ -1,10 +1,14 @@
 package com.lelestacia.lelenimexml.feature.anime.ui.home
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.lelestacia.lelenimexml.core.model.local.AnimeEntity
-import com.lelestacia.lelenimexml.feature.anime.domain.model.Anime
+import com.lelestacia.lelenimexml.core.model.Anime
 import com.lelestacia.lelenimexml.feature.anime.domain.usecase.AnimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -44,7 +48,7 @@ class AnimeViewModel @Inject constructor(
         animeUseCase.insertOrUpdateNewAnimeToHistory(anime)
     }
 
-    suspend fun getFavoriteAnime(): List<AnimeEntity> {
+    suspend fun getFavoriteAnime(): List<Anime> {
         return withContext(Dispatchers.IO) {
             animeUseCase.getAllFavoriteAnime()
         }

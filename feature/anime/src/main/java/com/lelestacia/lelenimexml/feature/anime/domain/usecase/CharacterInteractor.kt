@@ -1,10 +1,10 @@
 package com.lelestacia.lelenimexml.feature.anime.domain.usecase
 
+import com.lelestacia.lelenimexml.core.model.CharacterDetail
+import com.lelestacia.lelenimexml.core.model.Character
 import com.lelestacia.lelenimexml.core.repository.CharacterRepository
-import com.lelestacia.lelenimexml.feature.anime.domain.model.CharacterDetail
 import com.lelestacia.lelenimexml.feature.anime.domain.util.CharacterMapper.entityToCharacter
 import com.lelestacia.lelenimexml.feature.anime.domain.util.CharacterMapper.fullProfileEntityToFullProfile
-import com.lelestacia.lelenimexml.feature.anime.domain.model.Character
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

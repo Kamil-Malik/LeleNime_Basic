@@ -2,8 +2,8 @@ package com.lelestacia.lelenimexml.feature.anime.ui.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lelestacia.lelenimexml.feature.anime.domain.model.Anime
-import com.lelestacia.lelenimexml.feature.anime.domain.model.Character
+import com.lelestacia.lelenimexml.core.model.Character
+import com.lelestacia.lelenimexml.core.model.Anime
 import com.lelestacia.lelenimexml.feature.anime.domain.usecase.AnimeUseCase
 import com.lelestacia.lelenimexml.feature.anime.domain.usecase.CharacterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

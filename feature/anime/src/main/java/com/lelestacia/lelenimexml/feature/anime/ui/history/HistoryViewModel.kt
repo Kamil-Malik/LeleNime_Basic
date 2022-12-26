@@ -3,7 +3,7 @@ package com.lelestacia.lelenimexml.feature.anime.ui.history
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.lelestacia.lelenimexml.feature.anime.domain.model.Anime
+import com.lelestacia.lelenimexml.core.model.Anime
 import com.lelestacia.lelenimexml.feature.anime.domain.usecase.AnimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

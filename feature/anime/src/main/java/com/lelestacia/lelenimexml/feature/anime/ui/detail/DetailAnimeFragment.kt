@@ -80,7 +80,11 @@ class DetailAnimeFragment : Fragment(R.layout.fragment_detail_anime), View.OnCli
                     )
                     else getString(
                         R.string.information_value_detail,
-                        "${anime.season.replaceFirstChar { it.uppercase() }} ${anime.year}"
+                        "${
+                            anime.season!!.replaceFirstChar {
+                                it.uppercase()
+                            }
+                        } - ${anime.year}"
                     )
 
                 tvSynopsis.text = anime.synopsis ?: getString(R.string.no_information_by_mal)

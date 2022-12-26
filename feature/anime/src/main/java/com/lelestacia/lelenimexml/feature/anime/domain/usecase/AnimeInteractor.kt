@@ -2,9 +2,9 @@ package com.lelestacia.lelenimexml.feature.anime.domain.usecase
 
 import androidx.paging.PagingData
 import androidx.paging.map
+import com.lelestacia.lelenimexml.core.model.Anime
 import com.lelestacia.lelenimexml.core.model.local.AnimeEntity
 import com.lelestacia.lelenimexml.core.repository.AnimeRepository
-import com.lelestacia.lelenimexml.feature.anime.domain.model.Anime
 import com.lelestacia.lelenimexml.feature.anime.domain.util.AnimeMapperUtil
 import com.lelestacia.lelenimexml.feature.anime.domain.util.AnimeMapperUtil.animeEntityToAnime
 import com.lelestacia.lelenimexml.feature.anime.domain.util.AnimeMapperUtil.networkToAnime
@@ -36,8 +36,8 @@ class AnimeInteractor @Inject constructor(
             .getNewestAnimeDataByAnimeId(animeId)
             .map(::animeEntityToAnime)
 
-    override fun getAllFavoriteAnime(): List<AnimeEntity> {
-        return animeRepository.getFavoriteAnime()
+    override fun getAllFavoriteAnime(): List<Anime> {
+        return animeRepository.getFavoriteAnime().map(::animeEntityToAnime)
     }
 
     override suspend fun getAnimeByAnimeId(animeId: Int): AnimeEntity? =
